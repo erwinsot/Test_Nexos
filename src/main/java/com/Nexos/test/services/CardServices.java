@@ -1,11 +1,11 @@
 package com.Nexos.test.services;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +31,8 @@ public class CardServices {
         Long idCard= Long.parseLong(cardNumber);
         //Long idCard= Long.parseLong(cardNumber);
         LocalDate fechaCreacion = LocalDate.now();
-        LocalDate fechaVencimiento = fechaCreacion.plusYears(3);
-        Date fechaVencimientoDate = java.sql.Date.valueOf(fechaVencimiento);        
-        CardModel cardModel=new CardModel(idCard,"juan", "hernandez", fechaVencimientoDate, false, 0, false, 0);
+        LocalDate fechaVencimiento = fechaCreacion.plusYears(3);              
+        CardModel cardModel=new CardModel(idCard,"juan", "hernandez", fechaVencimiento, false, 0, false);
         cardRepository.save(cardModel);
         return cardNumber;
     }
@@ -110,9 +109,59 @@ public class CardServices {
         }
     }
 
-    public TransactionModel processPurchaseTransaction (TransactionModel transactionRequest) {
-        TransactionModel savedTransaction = transactionRepository.save(transactionRequest);
-        return savedTransaction;
+    public void purchaseTransaction(Map<String, Object> request) {
+        // Buscar la tarjeta correspondiente al número de tarjeta
+        String cardIdString = (String) request.get("cardId");
+        Long cardId = Long.parseLong(cardIdString);
+        String priceValue=request.get("price").toString();
+        double price = Double.parseDouble(priceValue);    
+              
+        Optional<CardModel> optionalEntity =cardRepository.findById(cardId);
+        CardModel card = optionalEntity.get();
+
+        System.out.println("la tarjeta es"+ optionalEntity.get());
+
+        // Verificar las condiciones para la transacción
+        if (card == null) {
+            throw new EntityNotFoundException("Tarjeta no encontrada");
+        }
+
+        if (!card.isActivate()) {
+            throw new IllegalStateException("La tarjeta no está activa");
+        }
+
+        if (card.isBlockedCard()) {
+            throw new IllegalStateException("La tarjeta está bloqueada");
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        if (currentDate.isAfter(card.getExpirationDate())) {
+            throw new IllegalStateException("La tarjeta está vencida");
+        }
+
+        if (card.getBalance() < price) {
+            throw new IllegalStateException("Saldo insuficiente en la tarjeta");
+        }
+
+        // Realizar la transacción
+        TransactionModel transaction = new TransactionModel();
+        transaction.setCard(card);
+        transaction.setAmount(price);
+
+        // Actualizar el saldo de la tarjeta
+        card.setBalance(card.getBalance() - price);
+
+        // Guardar la transacción y actualizar la tarjeta en la base de datos
+        transactionRepository.save(transaction);
+        cardRepository.save(card);
     }
+
+   public TransactionModel getTransactionById(Long transactionId) {
+        Optional<TransactionModel> optionalTransaction = transactionRepository.findById(transactionId);
+        return optionalTransaction.orElse(null);
+    }
+    
+
+    
     
 }

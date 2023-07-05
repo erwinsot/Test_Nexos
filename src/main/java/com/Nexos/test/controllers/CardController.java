@@ -80,7 +80,7 @@ public class CardController {
     }
 
 
-    @PostMapping("/transaction/purchase")
+    /* @PostMapping("/transaction/purchase")
     public ResponseEntity<String> purchaseTransaction(@RequestBody TransactionModel transactionModel) {
         try {
             cardServices.processPurchaseTransaction(transactionModel);
@@ -88,7 +88,34 @@ public class CardController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Transaction failed: " + e.getMessage());
         }
+    } */
+
+
+     @PostMapping("/transaction/purchase")
+    public ResponseEntity<String> purchaseTransaction(@RequestBody Map<String, Object> request) {
+        try {
+            cardServices.purchaseTransaction(request);
+            //cardServices.hacernada(request);
+            return ResponseEntity.ok("Transacción de compra exitosa");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tarjeta no encontrada");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al procesar la transacción");
+        }
     }
+
+    
+    @GetMapping("/transaction/{transactionId}")
+    public ResponseEntity<TransactionModel> getTransactionById(@PathVariable Long transactionId) {
+        TransactionModel transaction = cardServices.getTransactionById(transactionId);
+        if (transaction == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(transaction);
+    }
+
 
     
     
