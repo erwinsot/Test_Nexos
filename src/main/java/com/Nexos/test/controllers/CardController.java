@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.services.CardServices;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -52,6 +53,40 @@ public class CardController {
             return ResponseEntity.ok("Tarjeta bloqueada exitosamente");
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al bloquear la tarjeta");
+        }
+    }
+
+     @PostMapping("/card/balance")
+    public ResponseEntity<String> rechargeBalance(@RequestBody Map<String, String> request) {
+        try {
+            cardServices.rechargeCard(request);            
+            return ResponseEntity.ok("Saldo recargado exitosamente");
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al recargar el saldo");
+        }
+    }
+
+
+     @GetMapping("/card/balance/{cardId}")
+    public ResponseEntity<String> checkBalance(@PathVariable("cardId") String cardId) {
+        try {
+            
+            double saldo = cardServices.getBalance(Long.parseLong(cardId));
+            
+            return ResponseEntity.ok("El saldo de la tarjeta " + cardId + " es: " + saldo);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al consultar el saldo");
+        }
+    }
+
+
+    @PostMapping("/transaction/purchase")
+    public ResponseEntity<String> purchaseTransaction(@RequestBody TransactionModel transactionModel) {
+        try {
+            cardServices.processPurchaseTransaction(transactionModel);
+            return ResponseEntity.ok("Transaction successful");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Transaction failed: " + e.getMessage());
         }
     }
 

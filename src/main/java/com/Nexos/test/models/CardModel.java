@@ -10,7 +10,7 @@ public class CardModel {
     
     @Id
     private long cardId;
-
+   
     private String name;
     private String lastName;
     private Date expirationDate;
@@ -23,8 +23,9 @@ public class CardModel {
     public CardModel() {
     }
 
-    public CardModel(long cardId, String name, String lastName, Date expirationDate, boolean activate, double balance, boolean blockedCard, double transaction) {
+    public CardModel(long cardId,String name, String lastName, Date expirationDate, boolean activate, double balance, boolean blockedCard, double transaction) {
         this.cardId = cardId;
+      
         this.name = name;
         this.lastName = lastName;
         this.expirationDate = expirationDate;
@@ -40,7 +41,7 @@ public class CardModel {
 
     public void setCardId(long cardId) {
         this.cardId = cardId;
-    }
+    }    
 
     public String getName() {
         return this.name;
@@ -105,5 +106,6 @@ public class CardModel {
     public void setTransaction(double transaction) {
         this.transaction = transaction;
     }
+       
 
 }

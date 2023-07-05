@@ -1,12 +1,18 @@
 package com.Nexos.test.services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Nexos.test.models.CardModel;
+import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.repositories.ICardRepository;
+import com.Nexos.test.repositories.ITransactionRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -16,11 +22,18 @@ public class CardServices {
     @Autowired
     private ICardRepository cardRepository;
 
+    @Autowired
+    private ITransactionRepository transactionRepository;
+
     public String generateUniqueCardNumber(String productId) {
-        String randomNumber = generateRandomNumber();
+        String randomNumber = generateRandomNumber(); 
         String cardNumber = productId + randomNumber;
         Long idCard= Long.parseLong(cardNumber);
-        CardModel cardModel=new CardModel(idCard, "juan", "hernandez", null, false, 0, false, 0);
+        //Long idCard= Long.parseLong(cardNumber);
+        LocalDate fechaCreacion = LocalDate.now();
+        LocalDate fechaVencimiento = fechaCreacion.plusYears(3);
+        Date fechaVencimientoDate = java.sql.Date.valueOf(fechaVencimiento);        
+        CardModel cardModel=new CardModel(idCard,"juan", "hernandez", fechaVencimientoDate, false, 0, false, 0);
         cardRepository.save(cardModel);
         return cardNumber;
     }
@@ -48,7 +61,7 @@ public class CardServices {
     }
 
     public void blockCard(Long idCard) {
-        Optional<CardModel> optionalEntity =cardRepository.findById(idCard);
+        Optional<CardModel> optionalEntity =cardRepository.findFirstByPrefix(idCard);
 
         if (optionalEntity.isPresent()) {
             CardModel cardModel = optionalEntity.get();
@@ -59,6 +72,47 @@ public class CardServices {
         } else {
             throw new EntityNotFoundException("Tarjeta no encontrada");
         }
+    }
+
+    public void rechargeCard (Map<String,String> request) {        
+        long cardId = Long.parseLong(request.get("cardId"));
+        System.out.println(cardId);
+        double balance = Double.parseDouble(request.get("balance"));
+        Optional<CardModel> optionalEntity =cardRepository.findById(cardId);
+
+        if (optionalEntity.isPresent()) {
+            System.out.println("tarjeta encontrada");
+            CardModel cardModel = optionalEntity.get();
+            // Obtener el saldo actual de la tarjeta
+            double currentBalance = cardModel.getBalance();
+        
+            // Calcular el nuevo saldo sumando el saldo presente al saldo actual
+            double newBalance = currentBalance + balance;
+            cardModel.setBalance(newBalance);
+            // Guarda los cambios en la base de datos
+            cardRepository.save(cardModel);
+        } else {
+            throw new EntityNotFoundException("Tarjeta no encontrada");
+        }
+    }
+
+
+    public double getBalance (Long idCard) {        
+        Optional<CardModel> optionalEntity =cardRepository.findFirstByPrefix(idCard);
+
+        if (optionalEntity.isPresent()) {
+            CardModel cardModel = optionalEntity.get();
+            // Se activa la tarjeta en la base de datos
+            return cardModel.getBalance();
+            
+        } else {
+            throw new EntityNotFoundException("Tarjeta no encontrada");
+        }
+    }
+
+    public TransactionModel processPurchaseTransaction (TransactionModel transactionRequest) {
+        TransactionModel savedTransaction = transactionRepository.save(transactionRequest);
+        return savedTransaction;
     }
     
 }
