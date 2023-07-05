@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.services.CardServices;
@@ -67,7 +68,7 @@ public class CardController {
     }
 
 
-     @GetMapping("/card/balance/{cardId}")
+    @GetMapping("/card/balance/{cardId}")
     public ResponseEntity<String> checkBalance(@PathVariable("cardId") String cardId) {
         try {
             
@@ -79,16 +80,50 @@ public class CardController {
         }
     }
 
-
-    @PostMapping("/transaction/purchase")
-    public ResponseEntity<String> purchaseTransaction(@RequestBody TransactionModel transactionModel) {
+     @PostMapping("/transaction/purchase")
+    public ResponseEntity<String> purchaseTransaction(@RequestBody Map<String, Object> request) {
         try {
-            cardServices.processPurchaseTransaction(transactionModel);
-            return ResponseEntity.ok("Transaction successful");
+            cardServices.purchaseTransaction(request);
+            //cardServices.hacernada(request);
+            return ResponseEntity.ok("Transacción de compra exitosa");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tarjeta no encontrada");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Transaction failed: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al procesar la transacción");
         }
     }
+
+    
+    @GetMapping("/transaction/{transactionId}")
+    public ResponseEntity<TransactionModel> getTransactionById(@PathVariable Long transactionId) {
+        TransactionModel transaction = cardServices.getTransactionById(transactionId);
+        if (transaction == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(transaction);
+    }
+
+
+    @PostMapping("/transaction/anulation")
+    public ResponseEntity<String> cancelTransaction(@RequestBody Map<String, String> request) {
+        try {
+            cardServices.cancelTransaction(request);
+            //cardServices.hacernada(request);
+            return ResponseEntity.ok("Cancelacion exitosa");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaccion no encontrada");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al procesar la cancelacion de la transacción");
+        }
+    }
+
+
+
+
 
     
     
