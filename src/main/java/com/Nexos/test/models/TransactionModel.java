@@ -1,5 +1,8 @@
 package com.Nexos.test.models;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,16 +23,21 @@ public class TransactionModel {
     @JoinColumn(name = "card_id")
     private CardModel card;
 
-    private double amount;
+    private boolean cacelled;
 
+    private LocalDateTime transactionDate;
+
+    private double amount;
+    
 
     public TransactionModel() {
     }
 
-
-    public TransactionModel(Long transactionId, CardModel card, double amount) {
+    public TransactionModel(Long transactionId, CardModel card, boolean cacelled, LocalDateTime transactionDate, double amount) {
         this.transactionId = transactionId;
         this.card = card;
+        this.cacelled = cacelled;
+        this.transactionDate = transactionDate;
         this.amount = amount;
     }
 
@@ -49,6 +57,26 @@ public class TransactionModel {
         this.card = card;
     }
 
+    public boolean isCacelled() {
+        return this.cacelled;
+    }
+
+    public boolean getCacelled() {
+        return this.cacelled;
+    }
+
+    public void setCacelled(boolean cacelled) {
+        this.cacelled = cacelled;
+    }
+
+    public LocalDateTime getTransactionDate() {
+        return this.transactionDate;
+    }
+
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
     public double getAmount() {
         return this.amount;
     }
@@ -56,13 +84,6 @@ public class TransactionModel {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
-    
-
-
-
-
-
     
     
 }
