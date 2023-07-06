@@ -72,8 +72,7 @@ public class CardServices {
     }
 
     public void rechargeCard (Map<String,String> request) {        
-        long cardId = Long.parseLong(request.get("cardId"));
-        System.out.println(cardId);
+        long cardId = Long.parseLong(request.get("cardId"));        
         double balance = Double.parseDouble(request.get("balance"));
         Optional<CardModel> optionalEntity =cardRepository.findById(cardId);
 
