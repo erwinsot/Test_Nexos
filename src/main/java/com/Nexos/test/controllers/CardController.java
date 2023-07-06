@@ -5,21 +5,23 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.services.CardServices;
 import com.Nexos.test.services.TransactionService;
 
 import jakarta.persistence.EntityNotFoundException;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping()
+@CrossOrigin("*")
 public class CardController {
 
     @Autowired
@@ -34,7 +36,7 @@ public class CardController {
         String cardNumber = cardServices.generateUniqueCardNumber(productId);
 
         // Devuelve el número de tarjeta como respuesta
-        return ResponseEntity.ok(cardNumber);
+        return ResponseEntity.ok("Tarjeta "+ cardNumber + " creada con exito");
     } 
 
     @PostMapping("/card/enroll")
@@ -112,9 +114,7 @@ public class CardController {
     @PostMapping("/transaction/anulation")
     public ResponseEntity<String> cancelTransaction(@RequestBody Map<String, String> request) {
         try {
-            transactionService.cancelTransaction(request);
-            //cardServices.cancelTransaction(request);
-            //cardServices.hacernada(request);
+            transactionService.cancelTransaction(request);            
             return ResponseEntity.ok("Cancelacion exitosa");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaccion no encontrada");

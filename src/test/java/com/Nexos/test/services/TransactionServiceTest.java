@@ -16,6 +16,11 @@ import com.Nexos.test.repositories.ITransactionRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -148,6 +153,38 @@ public class TransactionServiceTest {
     Assertions.assertTrue(transactionModel.isCacelled());
     Assertions.assertEquals(0.0, cardModel.getBalance());
 }
+    @Test
+    void cancelTransaction_ValidTransaction_Success() {
+    // Arrange
+    Map<String, String> request = Map.of("transactionId", "123", "cardId", "456");
+
+    TransactionModel transaction = new TransactionModel();
+    transaction.setTransactionId(123L);
+    transaction.setCacelled(false);
+    transaction.setTransactionDate(LocalDateTime.now().minusHours(12)); // Within the 24-hour window
+
+    CardModel card = new CardModel();
+    card.setCardId(456L);
+    card.setBalance(1000);
+
+    // Simulate the relationship between TransactionModel and CardModel
+    transaction.setCard(card);
+
+    when(transactionRepository.findById(123L)).thenReturn(Optional.of(transaction));
+    when(cardRepository.findById(456L)).thenReturn(Optional.of(card));
+
+    // Act
+    transactionServices.cancelTransaction(request);
+
+    // Assert
+    verify(transactionRepository, times(1)).findById(123L);
+    verify(cardRepository, times(1)).findById(123L);
+    verify(cardRepository, times(1)).save(eq(card)); // Verify that the correct card is saved
+
+    
+}
+
+
 
 }
     

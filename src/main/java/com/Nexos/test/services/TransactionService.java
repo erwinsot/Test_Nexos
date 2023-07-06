@@ -95,11 +95,18 @@ public class TransactionService {
             
             // Obtener la fecha actual
             LocalDateTime currentDateTime = LocalDateTime.now();
+            LocalDateTime transactionDate=transaction.getTransactionDate();
             
             // Verificar si la transacción es válida para anulación (menor a 24 horas)
-            if (transaction.getTransactionDate().plusHours(24).isBefore(currentDateTime)) {
+            if (transactionDate != null) {
+                if (transaction.getTransactionDate().plusHours(24).isBefore(currentDateTime)) {
                 throw new IllegalArgumentException("La transacción no es válida para anulación");
             }
+
+            }else {
+                throw new IllegalArgumentException("La fecha de transacción es nula");
+            }
+            
             //verificar si la transaccion corresponde a la tarjeta
             Long idCard=transaction.getCard().getCardId();
             if(idCard!=cardId ){
