@@ -5,26 +5,30 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.RestController;
 import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.services.CardServices;
+import com.Nexos.test.services.TransactionService;
 
 import jakarta.persistence.EntityNotFoundException;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping()
+@CrossOrigin("*")
 public class CardController {
 
     @Autowired
     private CardServices cardServices;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @GetMapping("/card/{productId}/number")
     public ResponseEntity<String> generateCardNumber(@PathVariable String productId) {
@@ -32,7 +36,7 @@ public class CardController {
         String cardNumber = cardServices.generateUniqueCardNumber(productId);
 
         // Devuelve el número de tarjeta como respuesta
-        return ResponseEntity.ok(cardNumber);
+        return ResponseEntity.ok("Tarjeta "+ cardNumber + " creada con exito");
     } 
 
     @PostMapping("/card/enroll")
@@ -83,7 +87,8 @@ public class CardController {
      @PostMapping("/transaction/purchase")
     public ResponseEntity<String> purchaseTransaction(@RequestBody Map<String, Object> request) {
         try {
-            cardServices.purchaseTransaction(request);
+            transactionService.purchaseTransaction(request);
+            //cardServices.purchaseTransaction(request);
             //cardServices.hacernada(request);
             return ResponseEntity.ok("Transacción de compra exitosa");
         } catch (EntityNotFoundException e) {
@@ -98,7 +103,7 @@ public class CardController {
     
     @GetMapping("/transaction/{transactionId}")
     public ResponseEntity<TransactionModel> getTransactionById(@PathVariable Long transactionId) {
-        TransactionModel transaction = cardServices.getTransactionById(transactionId);
+        TransactionModel transaction =  transactionService.getTransactionById(transactionId);
         if (transaction == null) {
             return ResponseEntity.notFound().build();
         }
@@ -109,8 +114,7 @@ public class CardController {
     @PostMapping("/transaction/anulation")
     public ResponseEntity<String> cancelTransaction(@RequestBody Map<String, String> request) {
         try {
-            cardServices.cancelTransaction(request);
-            //cardServices.hacernada(request);
+            transactionService.cancelTransaction(request);            
             return ResponseEntity.ok("Cancelacion exitosa");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaccion no encontrada");
@@ -119,12 +123,6 @@ public class CardController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al procesar la cancelacion de la transacción");
         }
-    }
-
-
-
-
-
-    
+    }   
     
 }
