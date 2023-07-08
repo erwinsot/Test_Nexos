@@ -9,8 +9,7 @@ import jakarta.persistence.Id;
 public class CardModel {
     
     @Id
-    private long cardId;
-   
+    private long cardId;   
     private String name;
     private String lastName;
     private LocalDate expirationDate;

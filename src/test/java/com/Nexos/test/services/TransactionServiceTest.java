@@ -22,6 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -128,23 +129,31 @@ public class TransactionServiceTest {
     long transactionId = 123456L;
     long cardId = 7890L;
 
+    CardModel cardModel = Mockito.mock(CardModel.class);    
+
     TransactionModel transactionModel = new TransactionModel();
     transactionModel.setTransactionId(transactionId);
+    transactionModel.setTransactionDate(LocalDateTime.now());
     transactionModel.setCacelled(false);
-
-    CardModel cardModel = new CardModel();
+    transactionModel.setCard(cardModel);   
+    
     cardModel.setCardId(cardId);
 
     Optional<TransactionModel> optionalTransaction = Optional.of(transactionModel);
     Mockito.when(transactionRepository.findById(transactionId)).thenReturn(optionalTransaction);
     Mockito.when(transactionRepository.save(transactionModel)).thenReturn(transactionModel);
+    Mockito.when(cardModel.getCardId()).thenReturn(cardId);
+    
+    
 
     Mockito.when(cardRepository.findById(cardId)).thenReturn(Optional.of(cardModel));
     Mockito.when(cardRepository.save(cardModel)).thenReturn(cardModel);
+    transactionModel.setCard(cardModel);
 
     Map<String, String> request = new HashMap<>();
     request.put("transactionId", String.valueOf(transactionId));
     request.put("cardId", String.valueOf(cardId));
+    
 
     // Act
     transactionServices.cancelTransaction(request);
@@ -153,6 +162,8 @@ public class TransactionServiceTest {
     Assertions.assertTrue(transactionModel.isCacelled());
     Assertions.assertEquals(0.0, cardModel.getBalance());
 }
+
+
     @Test
     void cancelTransaction_ValidTransaction_Success() {
     // Arrange
@@ -177,8 +188,7 @@ public class TransactionServiceTest {
     transactionServices.cancelTransaction(request);
 
     // Assert
-    verify(transactionRepository, times(1)).findById(123L);
-    verify(cardRepository, times(1)).findById(123L);
+    verify(transactionRepository, times(1)).findById(123L);    
     verify(cardRepository, times(1)).save(eq(card)); // Verify that the correct card is saved
 
     

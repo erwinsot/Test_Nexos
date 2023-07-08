@@ -2,7 +2,6 @@ package com.Nexos.test.services;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.Nexos.test.models.CardModel;
-import com.Nexos.test.models.TransactionModel;
 import com.Nexos.test.repositories.ICardRepository;
 import com.Nexos.test.repositories.ITransactionRepository;
 

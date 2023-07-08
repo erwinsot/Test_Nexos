@@ -25,16 +25,15 @@ public class TransactionService {
     @Autowired
     private ITransactionRepository transactionRepository;
 
-
-    public void purchaseTransaction(Map<String, Object> request) {
+    public TransactionModel purchaseTransaction(Map<String, Object> request) {
         // Buscar la tarjeta correspondiente al número de tarjeta
         String cardIdString = (String) request.get("cardId");
         Long cardId = Long.parseLong(cardIdString);
-        String priceValue=request.get("price").toString();
-        double price = Double.parseDouble(priceValue);    
-              
-        Optional<CardModel> optionalEntity =cardRepository.findById(cardId);
-        CardModel card = optionalEntity.get();        
+        String priceValue = request.get("price").toString();
+        double price = Double.parseDouble(priceValue);
+
+        Optional<CardModel> optionalEntity = cardRepository.findById(cardId);
+        CardModel card = optionalEntity.get();
 
         // Verificar las condiciones para la transacción
         if (card == null) {
@@ -69,8 +68,9 @@ public class TransactionService {
         card.setBalance(card.getBalance() - price);
 
         // Guardar la transacción y actualizar la tarjeta en la base de datos
-        transactionRepository.save(transaction);
+        TransactionModel transactionModel= transactionRepository.save(transaction);
         cardRepository.save(card);
+        return transactionModel;
     }
 
     public TransactionModel getTransactionById(Long transactionId) {
@@ -78,49 +78,47 @@ public class TransactionService {
         return optionalTransaction.orElse(null);
     }
 
-
-
     public void cancelTransaction(@RequestBody Map<String, String> request) {
         long transactionId = Long.parseLong(request.get("transactionId"));
         long cardId = Long.parseLong(request.get("cardId"));
         Optional<TransactionModel> optionalTransaction = transactionRepository.findById(transactionId);
-        
+
         if (optionalTransaction.isPresent()) {
             TransactionModel transaction = optionalTransaction.get();
-            
+
             // Verificar si la transacción ya está anulada
-            if (transaction.isCacelled()) {                
-                throw new IllegalArgumentException("La transacción ya está anulada");
-            }            
-            
+            if (transaction.isCacelled()) {
+                throw new IllegalArgumentException("La transacción ya está cancelada");
+            }
+
             // Obtener la fecha actual
             LocalDateTime currentDateTime = LocalDateTime.now();
-            LocalDateTime transactionDate=transaction.getTransactionDate();
-            
+            LocalDateTime transactionDate = transaction.getTransactionDate();
+
             // Verificar si la transacción es válida para anulación (menor a 24 horas)
             if (transactionDate != null) {
                 if (transaction.getTransactionDate().plusHours(24).isBefore(currentDateTime)) {
-                throw new IllegalArgumentException("La transacción no es válida para anulación");
-            }
+                    throw new IllegalArgumentException("La transacción no es válida para anulación");
+                }
 
-            }else {
+            } else {
                 throw new IllegalArgumentException("La fecha de transacción es nula");
             }
-            
-            //verificar si la transaccion corresponde a la tarjeta
-            Long idCard=transaction.getCard().getCardId();
-            if(idCard!=cardId ){
+
+            // verificar si la transaccion corresponde a la tarjeta
+            Long idCard = transaction.getCard().getCardId();
+            if (idCard != cardId) {
                 throw new IllegalArgumentException("La transacción no corresponde con la tarjeta");
             }
-            
+
             // Obtener la tarjeta asociada a la transacción
-            CardModel card = transaction.getCard();            
+            CardModel card = transaction.getCard();
             // Actualizar el saldo de la tarjeta sumando el valor de la compra anulada
             card.setBalance(card.getBalance() + transaction.getAmount());
-            
+
             // Marcar la transacción como anulada
             transaction.setCacelled(true);
-            
+
             // Guardar los cambios en la base de datos
             cardRepository.save(card);
             transactionRepository.save(transaction);
@@ -128,5 +126,5 @@ public class TransactionService {
             throw new EntityNotFoundException("Transacción no encontrada");
         }
     }
-    
+
 }
