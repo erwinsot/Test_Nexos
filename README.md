@@ -21,7 +21,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 
 ### Paso 1: Descargar la Colección de Pruebas
 
-1. Ve al directorio "collectionPostman" de este repositorio.
+1. Ve al directorio `collectionPostman` de este repositorio.
 2. Descarga el archivo de la colección de pruebas `ColeccionTestNexus.postman_collection.json`.
 3. Descarga el archivo de variables de entorno de pruebas `card.postman_environment.json`"
 
