@@ -52,9 +52,9 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 2. En la interfaz de Swagger, encontrarás una lista de los endpoints disponibles, junto con información detallada sobre cada uno de ellos, incluyendo parámetros, respuestas y ejemplos.
 3. La documentación de la API te ayudará a comprender y utilizar de manera efectiva los diferentes recursos y funcionalidades disponibles en el proyecto.
 
-## Información
+## Información adicional
 
-En la carpeta docs de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
+En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
 
 
 ### Contacto
