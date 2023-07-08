@@ -54,76 +54,12 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 ## Información
 
-Esta sección proporciona información adicional sobre el proyecto, incluyendo detalles técnicos, requisitos y cualquier otra información relevante.
+En la carpeta docs de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
 
-### Documentacion sobre la prueba tecnica
-
-- Para documentar la api se utilizo swagger con el fin de 
-- Tecnología 2
-- Tecnología 3
-
-### Requisitos
-
-- Requisito 1
-- Requisito 2
-- Requisito 3
-
-### Instalación
-
-1. Clona este repositorio.
-2. Instala las dependencias utilizando `npm install`.
-3. Configura las variables de entorno en el archivo `.env`.
-4. Ejecuta la aplicación con `npm start`.
-
-### Contribución
-
-Contribuye al proyecto siguiendo estos pasos:
-
-1. Haz un fork de este repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-caracteristica`).
-3. Realiza tus cambios y haz commits (`git commit -am 'Agrega nueva característica'`).
-4. Sube tus cambios a la rama (`git push origin feature/nueva-caracteristica`).
-5. Abre una Pull Request.
-
-### Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
 
 ### Contacto
 
-- Nombre: Tu Nombre
-- Email: tuemail@example.com
-- Proyecto: [Nombre del Proyecto](https://github.com/tuusuario/tuproyecto)
-
-## Características
-
-- Característica 1: Descripción de la característica.
-- Característica 2: Descripción de la característica.
-- Característica 3: Descripción de la característica.
-
-## Tecnologías utilizadas
-
-- Tecnología 1: Descripción de la tecnología y su uso en el proyecto.
-- Tecnología 2: Descripción de la tecnología y su uso en el proyecto.
-- Tecnología 3: Descripción de la tecnología y su uso en el proyecto.
-
-## Contribución
-
-1. Haz un fork del repositorio.
-2. Crea una rama con un nombre descriptivo (`git checkout -b feature/nombre-caracteristica`).
-3. Realiza los cambios y realiza un commit con un mensaje descriptivo (`git commit -m "Agregar descripción de los cambios"`).
-4. Realiza un push a tu repositorio fork (`git push origin feature/nombre-caracteristica`).
-5. Abre una solicitud de extracción en el repositorio original.
-
-## Equipo
-
-- Nombre del colaborador 1
-- Nombre del colaborador 2
-- Nombre del colaborador 3
-
-- [Guía de Uso](./guide.md)
+- Nombre: Erwin Soto
+- Email: ersowt@gmail.com
 
 
-## Licencia
-
-Este proyecto está licenciado bajo [Nombre de la Licencia](URL de la licencia).
