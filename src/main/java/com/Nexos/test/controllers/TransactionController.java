@@ -27,10 +27,10 @@ public class TransactionController {
     private TransactionService transactionService;    
 
     @PostMapping("/transaction/purchase")
-    @Operation(summary = "Verifica el saldo de una tarjeta", description = "Verifica el saldo de una tarjeta utilizando su ID")
+    @Operation(summary = "Realiza una transaccion de compra", description = "Realiza una trasaccion de compra dado el numero de la tarjeta y el precio de compra")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Saldo consultado exitosamente"),
-            @ApiResponse(responseCode = "500", description = "Error al consultar el saldo") })
+            @ApiResponse(responseCode = "200", description = "Entrada Ejemplo {'cardId': '1020301234567801', 'price': '1000'} transacción de compra exitosa"),
+            @ApiResponse(responseCode = "500", description = "Error al procesar la transacción") })
     public ResponseEntity<String> purchaseTransaction(@RequestBody Map<String, Object> request) {
 
         try {

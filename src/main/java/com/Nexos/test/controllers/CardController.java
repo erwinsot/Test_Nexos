@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.Nexos.test.models.CardModel;
 import com.Nexos.test.services.CardServices;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,23 +35,24 @@ public class CardController {
     @GetMapping("/card/{productId}/number")
     @Operation(summary = "Genera número de tarjeta a partir de una id de 6 dígitos", description = "Se genera un número de tarjeta válido a partir de un id de 6 dígitos. La tarjeta tendrá 16 dígitos una vez creada.")
     @ApiResponse(responseCode = "200", description = "Se ingresa un número de 6 dígitos para que devuelva correctamente")
-    public ResponseEntity<String> generateCardNumber(@PathVariable String productId) {
+    public ResponseEntity <?> generateCardNumber(@PathVariable String productId) {
         // Validación de longitud del productId
         if (productId.length() != 6) {
             return ResponseEntity.badRequest().body("El Id del producto debe ser de exactamente 6 Dígitos");
         }
         try {
             // Lógica para generar el número de tarjeta
-            String cardNumber = cardServices.generateUniqueCardNumber(productId);
+            CardModel cardNumber = cardServices.generateUniqueCardNumber(productId);
 
             // Devuelve el número de tarjeta como respuesta
-            return ResponseEntity.ok("Tarjeta " + cardNumber + " creada exitosamente");     
+            return ResponseEntity.ok(cardNumber );     
         } catch (IllegalStateException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
         
     }
+ 
 
     @PostMapping("/card/enroll")
     @Operation(summary = "Activa una tarjeta", description = "Activa una tarjeta utilizando su ID")

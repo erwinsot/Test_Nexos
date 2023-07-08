@@ -15,7 +15,7 @@ public class CardServices {
     @Autowired
     private ICardRepository cardRepository;
 
-    public String generateUniqueCardNumber(String productId) {
+    public CardModel generateUniqueCardNumber(String productId) {
         long cardId = Long.parseLong(productId);
         Optional<CardModel> optionalEntity = cardRepository.findFirstByPrefix(cardId);
         if(!optionalEntity.isPresent()){
@@ -26,7 +26,7 @@ public class CardServices {
             LocalDate fechaVencimiento = fechaCreacion.plusYears(3);
             CardModel cardModel = new CardModel(idCard, null, null, fechaVencimiento, false, 0, false);
             cardRepository.save(cardModel);
-            return cardNumber;
+            return cardModel;
         }
         else{
             throw new IllegalStateException("Ya se ha creado una tarjeta con este id");
