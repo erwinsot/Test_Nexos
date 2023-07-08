@@ -1,37 +1,37 @@
 package com.Nexos.test.models;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
 
 @Entity
 public class CardModel {
     
     @Id
-    private long cardId;
-
+    private long cardId;   
     private String name;
     private String lastName;
-    private Date expirationDate;
+    private LocalDate expirationDate;
     private boolean activate;
     private double balance;
     private boolean blockedCard;
-    private double transaction;
+    
 
 
     public CardModel() {
     }
 
-    public CardModel(long cardId, String name, String lastName, Date expirationDate, boolean activate, double balance, boolean blockedCard, double transaction) {
+    public CardModel(long cardId,String name, String lastName, LocalDate expirationDate, boolean activate, double balance, boolean blockedCard) {
         this.cardId = cardId;
+      
         this.name = name;
         this.lastName = lastName;
         this.expirationDate = expirationDate;
         this.activate = activate;
         this.balance = balance;
         this.blockedCard = blockedCard;
-        this.transaction = transaction;
+        
     }
 
     public long getCardId() {
@@ -40,7 +40,7 @@ public class CardModel {
 
     public void setCardId(long cardId) {
         this.cardId = cardId;
-    }
+    }    
 
     public String getName() {
         return this.name;
@@ -58,11 +58,11 @@ public class CardModel {
         this.lastName = lastName;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return this.expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -97,13 +97,6 @@ public class CardModel {
     public void setBlockedCard(boolean blockedCard) {
         this.blockedCard = blockedCard;
     }
-
-    public double getTransaction() {
-        return this.transaction;
-    }
-
-    public void setTransaction(double transaction) {
-        this.transaction = transaction;
-    }
+       
 
 }
