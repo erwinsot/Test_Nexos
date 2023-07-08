@@ -35,6 +35,9 @@ Breve descripción del proyecto y su propósito.
 - Nombre del colaborador 2
 - Nombre del colaborador 3
 
+- [Guía de Uso](./guide.md)
+
+
 ## Licencia
 
 Este proyecto está licenciado bajo [Nombre de la Licencia](URL de la licencia).
