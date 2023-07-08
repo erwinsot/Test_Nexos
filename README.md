@@ -39,7 +39,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 3. Se abrirá el "Postman Collection Run Collection".
 4. Asegúrate de que la colección de pruebas esté seleccionada en el campo `ColleccionTestNexus`.
 5. Asegúrate de que la las variables de entorno de pruebas `Card` estén seleccionadas .
-6. Por defecto la variable de entorno cardId tendra un valor el cual prodra ser cambiado por cualquier otro valor
+6. Por defecto la variable de entorno `cardId` tendra un valor, el cual prodra ser cambiado por cualquier otro valor.
 7. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
 8. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
 
