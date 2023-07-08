@@ -40,8 +40,9 @@ Selecciona la variables de entorno importadas en postman:
 2. Haz clic en el botón "Runner" en la esquina superior derecha de la interfaz.
 3. Se abrirá el "Postman Collection Run Collection".
 4. Asegúrate de que la colección de pruebas esté seleccionada en el campo "CollectionTestNexus".
-5. Haz clic en el botón "Start Run" para ejecutar las pruebas.
-6. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
+5. Asegúrate de que la las variables ce entorno de pruebas esté seleccionadas .
+6. Haz clic en el botón "Start Run" para ejecutar las pruebas.
+7. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
 ## Características
 
 - Característica 1: Descripción de la característica.
