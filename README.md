@@ -1,13 +1,19 @@
-# Nombre del Proyecto
+# Prueba tecnica para nexos
 
-Breve descripción del proyecto y su propósito.
+## Requisitos
+Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y configurado:
 
-## Instalación
+- [XAMPP](https://www.apachefriends.org/index.html) o [WAMP](https://www.wampserver.com/en/) (u otra alternativa similar) con MySQL.
+- Versión de MySQL: 5.7 o superior.
+
+## Instalación en local
 
 1. Clona el repositorio en tu máquina local.
-2. Ejecuta el comando `npm install` para instalar las dependencias.
-3. Configura las variables de entorno en el archivo `.env`.
-4. Ejecuta el comando `npm start` para iniciar la aplicación.
+2. Inicia tu servidor MySQL a través de XAMPP, WAMP u otra herramienta similar.
+3. Crear la base de datos con la que se trabajara la prueba tecnica `poner nombre deseado`.
+4. Una vez creada la base de datos dirigirse `\Test_Nexos\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar dbnexos por nombre de base de datos creada.
+5. Configura las credenciales de conexión a la base de datos en el archivo de configuración correspondiente  `spring.datasource.username=` `spring.datasource.password=`.
+6. Ejecutar Prueba
 
 ## Características
 
