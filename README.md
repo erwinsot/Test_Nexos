@@ -31,8 +31,6 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 2. Haz clic en el botón "Import" en la esquina superior izquierda de la interfaz.
 3. Selecciona el archivo `ColeccionTestNexus.postman_collection.json`  y el archivo `card.postman_environment.json` que descargaste anteriormente.
 4. La colección de pruebas y variables de entorno se importarán en Postman.
-   
-Selecciona la variables de entorno importadas en postman:
 
 ### Paso 4: Ejecutar las Pruebas
 
