@@ -17,33 +17,29 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
+### Configuracion postman para ejecutar la solucion de la prueba
 
 ### Paso 1: Descargar la Colección de Pruebas
 
-1. Ve al directorio "tests" de este repositorio.
-2. Descarga el archivo de la colección de pruebas "ProjectTests.postman_collection.json".
+1. Ve al directorio "collectionPostman" de este repositorio.
+2. Descarga el archivo de la colección de pruebas "ColeccionTestNexus.postman_collection.json".
+3. Descarga el archivo de variables de entorno de pruebas "card.postman_environment.json"
 
 ### Paso 2: Importar la Colección en Postman
 
 1. Abre Postman en tu máquina.
 2. Haz clic en el botón "Import" en la esquina superior izquierda de la interfaz.
-3. Selecciona el archivo "ProjectTests.postman_collection.json" que descargaste anteriormente.
-4. La colección de pruebas se importará en Postman.
-
-### Paso 3: Configurar Variables de Entorno (opcional)
-
-Si el proyecto requiere variables de entorno específicas para las pruebas, configúralas en Postman antes de ejecutar las pruebas. Puedes hacerlo siguiendo estos pasos:
-
-1. Haz clic en la colección de pruebas importada en la barra lateral izquierda de Postman.
-2. Haz clic en la pestaña "Variables" en la parte superior de la interfaz.
-3. Configura las variables requeridas con sus respectivos valores.
+3. Selecciona el archivo "ColeccionTestNexus.postman_collection.json"  y el archivo "card.postman_environment.json" que descargaste anteriormente.
+4. La colección de pruebas y variables de entorno se importarán en Postman.
+   
+Selecciona la variables de entorno importadas en postman:
 
 ### Paso 4: Ejecutar las Pruebas
 
 1. Abre la colección de pruebas en Postman.
 2. Haz clic en el botón "Runner" en la esquina superior derecha de la interfaz.
-3. Se abrirá el "Postman Collection Runner".
-4. Asegúrate de que la colección de pruebas esté seleccionada en el campo "Collection".
+3. Se abrirá el "Postman Collection Run Collection".
+4. Asegúrate de que la colección de pruebas esté seleccionada en el campo "CollectionTestNexus".
 5. Haz clic en el botón "Start Run" para ejecutar las pruebas.
 6. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
 ## Características
