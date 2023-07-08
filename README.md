@@ -11,7 +11,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 1. Clona el repositorio en tu máquina local.
 2. Inicia tu servidor MySQL a través de XAMPP, WAMP u otra herramienta similar.
 3. Crear la base de datos con la que se trabajara la prueba tecnica `poner nombre deseado`.
-4. Una vez creada la base de datos dirigirse `\Test_Nexos\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar dbnexos por nombre de base de datos creada.
+4. Una vez creada la base de datos dirigirse `\Test_Nexos\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar `dbnexos` por nombre de base de datos creada.
 5. Configura las credenciales de conexión a la base de datos en el archivo de configuración correspondiente  `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
