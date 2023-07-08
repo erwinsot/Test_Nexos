@@ -48,7 +48,7 @@ La API de este proyecto está documentada utilizando Swagger. Swagger es una esp
 Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 ### Ejecuta la aplicación.
-1. Abre un navegador web y navega a la siguiente URL: http://localhost:puerto/swagger-ui.html. Reemplaza puerto por el número de puerto en el que se ejecuta la aplicación.
+1. Abre un navegador web y navega a la siguiente URL: http://localhost:puerto/doc/swagger-ui.html. Reemplaza puerto por el número de puerto en el que se ejecuta la aplicación.
 2. En la interfaz de Swagger, encontrarás una lista de los endpoints disponibles, junto con información detallada sobre cada uno de ellos, incluyendo parámetros, respuestas y ejemplos.
 3. La documentación de la API te ayudará a comprender y utilizar de manera efectiva los diferentes recursos y funcionalidades disponibles en el proyecto.
 
