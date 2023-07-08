@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "319f94a2-bf20-4678-9524-bbec332da736",
+		"_postman_id": "ff0a3351-e32a-4921-ad02-eb7d058201bc",
 		"name": "ColeccionTestNexus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28391108"
@@ -8,9 +8,65 @@
 	"item": [
 		{
 			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    var cardNumber = generateCardNumber(productId);\r",
+							"    pm.environment.set(\"card\", cardNumber);\r",
+							"} catch (e) {\r",
+							"    // Manejar la excepción si es necesario\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var cardId = jsonData.cardId;\r",
+							"\r",
+							"pm.environment.set(\"tarjeta\", cardId.toString());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/card/{{cardId}}/number",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"{{cardId}}",
+						"number"
+					]
+				}
 			},
 			"response": []
 		},
@@ -21,7 +77,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cardId\": \"1888459891421791\"\r\n}",
+					"raw": "{\r\n    \"cardId\": \"{{tarjeta}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cardId\": \"1888459891421791\",\r\n    \"balance\": \"10000\"\r\n}",
+					"raw": "{\r\n    \"cardId\": \"{{tarjeta}}\",\r\n    \"balance\": \"10000\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -74,32 +130,27 @@
 		},
 		{
 			"name": "New Request",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/card/188845",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"card",
-						"188845"
-					]
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseText = pm.response.text();\r",
+							"var transactionId = responseText.match(/\\d+/)[0];\r",
+							"\r",
+							"pm.environment.set(\"transaccionId\", transactionId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cardId\": \"1888459891421791\",\r\n    \"price\": 2000\r\n}",
+					"raw": "{\r\n    \"cardId\": \"{{tarjeta}}\",\r\n    \"price\": 2000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,7 +178,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/transaction/7",
+					"raw": "http://localhost:8080/transaction/{{transaccionId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -135,7 +186,7 @@
 					"port": "8080",
 					"path": [
 						"transaction",
-						"7"
+						"{{transaccionId}}"
 					]
 				}
 			},
@@ -148,7 +199,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cardId\": \"1888459891421791\",\r\n    \"transactionId\": \"7\"\r\n}",
+					"raw": "{\r\n    \"cardId\": \"{{tarjeta}}\",\r\n    \"transactionId\": \"{{transaccionId}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -176,7 +227,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/card/balance/123645",
+					"raw": "http://localhost:8080/card/balance/{{cardId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -185,7 +236,27 @@
 					"path": [
 						"card",
 						"balance",
-						"123645"
+						"{{cardId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/card/{{cardId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"{{cardId}}"
 					]
 				}
 			},
