@@ -17,7 +17,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
-### Configuracion postman para ejecutar la solucion de la prueba
+## Configuracion postman para ejecutar la solucion de la prueba
 
 ### Paso 1: Descargar la Colección de Pruebas
 
