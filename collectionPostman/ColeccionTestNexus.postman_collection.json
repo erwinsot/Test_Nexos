@@ -8,9 +8,52 @@
 	"item": [
 		{
 			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"try {\r",
+							"    var cardNumber = generateCardNumber(productId);\r",
+							"    pm.environment.set(\"card\", cardNumber);\r",
+							"} catch (e) {\r",
+							"    // Manejar la excepción si es necesario\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/card/{{cardId}}/number",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"{{cardId}}",
+						"number"
+					]
+				}
 			},
 			"response": []
 		},
