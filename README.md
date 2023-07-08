@@ -22,14 +22,14 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 ### Paso 1: Descargar la Colección de Pruebas
 
 1. Ve al directorio "collectionPostman" de este repositorio.
-2. Descarga el archivo de la colección de pruebas "ColeccionTestNexus.postman_collection.json".
-3. Descarga el archivo de variables de entorno de pruebas "card.postman_environment.json"
+2. Descarga el archivo de la colección de pruebas `ColeccionTestNexus.postman_collection.json`.
+3. Descarga el archivo de variables de entorno de pruebas `card.postman_environment.json`"
 
 ### Paso 2: Importar la Colección en Postman
 
 1. Abre Postman en tu máquina.
 2. Haz clic en el botón "Import" en la esquina superior izquierda de la interfaz.
-3. Selecciona el archivo "ColeccionTestNexus.postman_collection.json"  y el archivo "card.postman_environment.json" que descargaste anteriormente.
+3. Selecciona el archivo `ColeccionTestNexus.postman_collection.json`  y el archivo `card.postman_environment.json` que descargaste anteriormente.
 4. La colección de pruebas y variables de entorno se importarán en Postman.
    
 Selecciona la variables de entorno importadas en postman:
@@ -39,10 +39,12 @@ Selecciona la variables de entorno importadas en postman:
 1. Abre la colección de pruebas en Postman.
 2. Haz clic en el botón "Runner" en la esquina superior derecha de la interfaz.
 3. Se abrirá el "Postman Collection Run Collection".
-4. Asegúrate de que la colección de pruebas esté seleccionada en el campo "CollectionTestNexus".
-5. Asegúrate de que la las variables ce entorno de pruebas esté seleccionadas .
-6. Haz clic en el botón "Start Run" para ejecutar las pruebas.
+4. Asegúrate de que la colección de pruebas esté seleccionada en el campo `ColleccionTestNexus`.
+5. Asegúrate de que la las variables de entorno de pruebas `Card` estén seleccionadas .
+6. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
 7. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
+
+   
 ## Características
 
 - Característica 1: Descripción de la característica.
