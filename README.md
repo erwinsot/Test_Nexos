@@ -42,7 +42,59 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 6. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
 7. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
 
-   
+## Documentación de la API
+La API de este proyecto está documentada utilizando Swagger. Swagger es una especificación y conjunto de herramientas populares para diseñar, crear y documentar APIs RESTful. Proporciona una interfaz interactiva para explorar y probar los endpoints de la API, así como una documentación clara y detallada de cada uno de ellos.
+
+Para acceder a la documentación de la API, sigue los siguientes pasos:
+
+### Ejecuta la aplicación.
+1. Abre un navegador web y navega a la siguiente URL: http://localhost:puerto/swagger-ui.html. Reemplaza puerto por el número de puerto en el que se ejecuta la aplicación.
+2. En la interfaz de Swagger, encontrarás una lista de los endpoints disponibles, junto con información detallada sobre cada uno de ellos, incluyendo parámetros, respuestas y ejemplos.
+3. La documentación de la API te ayudará a comprender y utilizar de manera efectiva los diferentes recursos y funcionalidades disponibles en el proyecto.
+
+## Información
+
+Esta sección proporciona información adicional sobre el proyecto, incluyendo detalles técnicos, requisitos y cualquier otra información relevante.
+
+### Documentacion sobre la prueba tecnica
+
+- Para documentar la api se utilizo swagger con el fin de 
+- Tecnología 2
+- Tecnología 3
+
+### Requisitos
+
+- Requisito 1
+- Requisito 2
+- Requisito 3
+
+### Instalación
+
+1. Clona este repositorio.
+2. Instala las dependencias utilizando `npm install`.
+3. Configura las variables de entorno en el archivo `.env`.
+4. Ejecuta la aplicación con `npm start`.
+
+### Contribución
+
+Contribuye al proyecto siguiendo estos pasos:
+
+1. Haz un fork de este repositorio.
+2. Crea una nueva rama (`git checkout -b feature/nueva-caracteristica`).
+3. Realiza tus cambios y haz commits (`git commit -am 'Agrega nueva característica'`).
+4. Sube tus cambios a la rama (`git push origin feature/nueva-caracteristica`).
+5. Abre una Pull Request.
+
+### Licencia
+
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
+
+### Contacto
+
+- Nombre: Tu Nombre
+- Email: tuemail@example.com
+- Proyecto: [Nombre del Proyecto](https://github.com/tuusuario/tuproyecto)
+
 ## Características
 
 - Característica 1: Descripción de la característica.
