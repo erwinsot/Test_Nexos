@@ -1,15 +1,17 @@
-# Etapa de compilación
+#
+# Build stage
+#
 FROM maven:3.8.4-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn package -DskipTests
-
-# Etapa de producción
+#
+# Package stage
+#
 FROM openjdk:17-slim
-COPY --from=build  target/test-0.0.1-SNAPSHOT.jar .
-ENTRYPOINT ["java", "-jar", "test-0.0.1-SNAPSHOT.jar"]
-
+COPY --from=build /target/test-0.0.1-SNAPSHOT.jar test.jar
+# ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","test.jar"]
 
 
