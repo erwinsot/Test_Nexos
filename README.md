@@ -13,7 +13,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 1. Clona el repositorio en tu máquina local.
 2. Inicia tu servidor MySQL a través de XAMPP, WAMP u otra herramienta similar.
 3. Crear la base de datos con la que se trabajara la prueba tecnica `poner nombre deseado`.
-4. Una vez creada la base de datos dirigirse `\Test_Nexos\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar `dbnexos` por nombre de base de datos creada.
+4. Una vez creada la base de datos dirigirse `\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar `dbnexos` por nombre de base de datos creada.
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
@@ -55,7 +55,21 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 ## Información adicional
 
-En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
+- En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
+
+## Pruebas Unitarias
+
+Se han desarrollado pruebas unitarias para asegurar la calidad y el correcto funcionamiento de la aplicación. Estas pruebas se han realizado utilizando las siguientes herramientas:
+
+- Mockito: Framework de simulación y mock para facilitar la escritura de pruebas unitarias en Java.
+- JUnit: Framework de pruebas unitarias estándar para Java.
+
+Las pruebas unitarias han cubierto los casos de prueba clave y se han enfocado en verificar el comportamiento correcto de los componentes y funciones principales de la aplicación.
+
+Para ejecutar las pruebas unitarias, te puedes dirigir `\src\test\java\com\Nexos\test\services` donde encontraras los archivos con las pruebas unitarias
+
+
+
 
 
 ### Contacto
