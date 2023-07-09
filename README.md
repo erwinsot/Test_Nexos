@@ -69,6 +69,11 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 - En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
 
+## modelo de base de datos
+
+![Modelos entidad relacion de la base de datos con que trabajara la prueba](/docs/base_de_datos.png)
+
+
 ## Pruebas Unitarias
 
 Se han desarrollado pruebas unitarias para asegurar la calidad y el correcto funcionamiento de la aplicación. Estas pruebas se han realizado utilizando las siguientes herramientas:
