@@ -1,0 +1,10 @@
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\config\OpenApiConfig.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\controllers\TransactionController.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\models\CardModel.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\repositories\ICardRepository.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\models\TransactionModel.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\services\CardServices.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\controllers\CardController.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\services\TransactionService.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\repositories\ITransactionRepository.java
+D:\test\final proyect\Test_Nexos\src\main\java\com\Nexos\test\TestApplication.java
