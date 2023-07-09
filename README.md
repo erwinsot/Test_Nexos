@@ -17,6 +17,17 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
+##Despliegue en Render
+La aplicación se ha implementado y desplegado en la plataforma Render, un servicio en la nube que permite realizar despliegues de aplicaciones de forma sencilla y escalable. En este caso, se utilizó Docker para empaquetar la aplicación y facilitar su despliegue en Render.
+
+Para ejecutar la prueba de la aplicación en Render, sigue estos pasos:
+
+Accede a la URL proporcionada por Render para tu aplicación. Puedes encontrar esta URL en la interfaz de Render o en la documentación del despliegue.
+
+Una vez que hayas accedido a la URL, podrás interactuar con la aplicación y realizar las pruebas necesarias. Asegúrate de seguir las instrucciones específicas proporcionadas en la documentación de la aplicación para realizar las pruebas adecuadas.
+
+Durante las pruebas, verifica el comportamiento de la aplicación y asegúrate de que todas las funcionalidades se ejecuten correctamente. Si encuentras algún problema o error, revisa los registros y las herramientas de monitoreo proporcionadas por Render para obtener más información sobre el estado de la aplicación.
+
 ## Configuracion postman para ejecutar la solucion de la prueba
 
 ### Paso 1: Descargar la Colección de Pruebas
