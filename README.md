@@ -13,9 +13,20 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 1. Clona el repositorio en tu máquina local.
 2. Inicia tu servidor MySQL a través de XAMPP, WAMP u otra herramienta similar.
 3. Crear la base de datos con la que se trabajara la prueba tecnica `poner nombre deseado`.
-4. Una vez creada la base de datos dirigirse `\Test_Nexos\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar `dbnexos` por nombre de base de datos creada.
+4. Una vez creada la base de datos dirigirse `\src\main\resources\application.properties` y modificar `spring.datasource.url=jdbc:mysql://localhost:3306/dbnexos` cambiar `dbnexos` por nombre de base de datos creada.
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
+
+## Despliegue en Render
+La aplicación se ha implementado y desplegado en la plataforma Render, un servicio en la nube que permite realizar despliegues de aplicaciones de forma sencilla y escalable. En este caso, se utilizó Docker para empaquetar la aplicación y facilitar su despliegue en Render.
+
+Para ejecutar la prueba de la aplicación en Render, sigue estos pasos:
+
+Accede a la URL proporcionada por Render para tu aplicación. Puedes encontrar esta URL en la interfaz de Render o en la documentación del despliegue.
+
+Una vez que hayas accedido a la URL, podrás interactuar con la aplicación y realizar las pruebas necesarias. Asegúrate de seguir las instrucciones específicas proporcionadas en la documentación de la aplicación para realizar las pruebas adecuadas.
+
+Durante las pruebas, verifica el comportamiento de la aplicación y asegúrate de que todas las funcionalidades se ejecuten correctamente. Si encuentras algún problema o error, revisa los registros y las herramientas de monitoreo proporcionadas por Render para obtener más información sobre el estado de la aplicación.
 
 ## Configuracion postman para ejecutar la solucion de la prueba
 
@@ -39,8 +50,9 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 3. Se abrirá el "Postman Collection Run Collection".
 4. Asegúrate de que la colección de pruebas esté seleccionada en el campo `ColleccionTestNexus`.
 5. Asegúrate de que la las variables de entorno de pruebas `Card` estén seleccionadas .
-6. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
-7. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
+6. Por defecto la variable de entorno `cardId` tendra un valor, el cual prodra ser cambiado por cualquier otro valor.
+7. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
+8. Postman ejecutará automáticamente las solicitudes y mostrará los resultados de las pruebas.
 
 ## Documentación de la API
 La API de este proyecto está documentada utilizando Swagger. Swagger es una especificación y conjunto de herramientas populares para diseñar, crear y documentar APIs RESTful. Proporciona una interfaz interactiva para explorar y probar los endpoints de la API, así como una documentación clara y detallada de cada uno de ellos.
@@ -54,7 +66,21 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 ## Información adicional
 
-En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
+- En la carpeta `docs` de este repositorio encontra los flujos de datos de la aplicacion con el fin de ayudar el entendimiento de la solucion.
+
+## Pruebas Unitarias
+
+Se han desarrollado pruebas unitarias para asegurar la calidad y el correcto funcionamiento de la aplicación. Estas pruebas se han realizado utilizando las siguientes herramientas:
+
+- Mockito: Framework de simulación y mock para facilitar la escritura de pruebas unitarias en Java.
+- JUnit: Framework de pruebas unitarias estándar para Java.
+
+Las pruebas unitarias han cubierto los casos de prueba clave y se han enfocado en verificar el comportamiento correcto de los componentes y funciones principales de la aplicación.
+
+Para ejecutar las pruebas unitarias, te puedes dirigir `\src\test\java\com\Nexos\test\services` donde encontraras los archivos con las pruebas unitarias
+
+
+
 
 
 ### Contacto
