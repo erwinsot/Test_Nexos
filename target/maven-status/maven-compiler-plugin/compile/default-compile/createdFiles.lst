@@ -1,0 +1,10 @@
+com\Nexos\test\config\OpenApiConfig.class
+com\Nexos\test\services\CardServices.class
+com\Nexos\test\services\TransactionService.class
+com\Nexos\test\controllers\TransactionController.class
+com\Nexos\test\models\CardModel.class
+com\Nexos\test\repositories\ICardRepository.class
+com\Nexos\test\controllers\CardController.class
+com\Nexos\test\TestApplication.class
+com\Nexos\test\models\TransactionModel.class
+com\Nexos\test\repositories\ITransactionRepository.class

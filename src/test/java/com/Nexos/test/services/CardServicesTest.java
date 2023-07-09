@@ -43,7 +43,7 @@ public class CardServicesTest {
     public void testBlockCard_ExistingCard() {
         // Arrange
         Long idCard = 123456L;
-        CardModel cardModel = new CardModel(idCard, "juan", "hernandez", LocalDate.now(), false, 0, false);
+        CardModel cardModel = new CardModel(idCard, "juan", "hernandez", LocalDate.now(), true, 0, false);
         Optional<CardModel> optionalEntity = Optional.of(cardModel);
         Mockito.when(cardRepository.findFirstByPrefix(idCard)).thenReturn(optionalEntity);
 
@@ -78,7 +78,7 @@ public class CardServicesTest {
         double rechargeAmount = 50.0;
         double expectedNewBalance = currentBalance + rechargeAmount;
 
-        CardModel cardModel = new CardModel(cardId, "juan", "hernandez", LocalDate.now(), false, currentBalance, false);
+        CardModel cardModel = new CardModel(cardId, "juan", "hernandez", LocalDate.now(), true, currentBalance, false);
         Optional<CardModel> optionalEntity = Optional.of(cardModel);
         Mockito.when(cardRepository.findById(cardId)).thenReturn(optionalEntity);
 

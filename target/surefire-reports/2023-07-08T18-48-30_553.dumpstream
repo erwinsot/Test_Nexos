@@ -1,0 +1,5 @@
+# Created at 2023-07-08T18:48:30.693
+Boot Manifest-JAR contains absolute paths in classpath 'D:\test\final proyect\Test_Nexos\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
