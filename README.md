@@ -48,7 +48,7 @@ La aplicación se ha implementado y desplegado en la plataforma Render, un servi
 1. Abre la colección de pruebas en Postman.
 2. Haz clic en el botón "Runner" en la esquina superior derecha de la interfaz.
 3. Se abrirá el "Postman Collection Run Collection".
-4. Asegúrate de que la colección de pruebas esté seleccionada en el campo `ColleccionTestNexus` o `ColleccionTestNexus` .
+4. Asegúrate de que la colección de pruebas esté seleccionada en el campo `ColleccionTestNexus` o `ColleccionTestNexusNube` .
 5. Asegúrate de que la las variables de entorno de pruebas `Card` o `CardNube` estén seleccionadas .
 6. Por defecto la variable de entorno `cardId` tendra un valor, el cual prodra ser cambiado por cualquier otro valor.
 7. Haz clic en el botón "Run ColleccionTestNexus" para ejecutar las pruebas.
