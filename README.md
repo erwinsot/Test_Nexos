@@ -17,7 +17,7 @@ Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y co
 5. Configura las credenciales de conexión a la base de datos `spring.datasource.username=` `spring.datasource.password=`.
 6. Ejecutar Prueba tecnica
 
-##Despliegue en Render
+## Despliegue en Render
 La aplicación se ha implementado y desplegado en la plataforma Render, un servicio en la nube que permite realizar despliegues de aplicaciones de forma sencilla y escalable. En este caso, se utilizó Docker para empaquetar la aplicación y facilitar su despliegue en Render.
 
 Para ejecutar la prueba de la aplicación en Render, sigue estos pasos:
