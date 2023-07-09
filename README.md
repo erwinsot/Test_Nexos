@@ -1,4 +1,5 @@
 # Prueba tecnica para nexos
+Prueba tencina Backend desarrollada en java y springboot para nexos
 
 ## Requisitos
 Antes de ejecutar este proyecto, asegúrate de tener lo siguiente instalado y configurado:
