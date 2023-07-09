@@ -71,7 +71,7 @@ Para acceder a la documentación de la API, sigue los siguientes pasos:
 
 ## modelo de base de datos
 
-![Modelos entidad relacion de la base de datos con que trabajara la prueba](/docs/base de datos.png)
+![Modelos entidad relacion de la base de datos con que trabajara la prueba](/docs/DataBase.png)
 
 
 ## Pruebas Unitarias
